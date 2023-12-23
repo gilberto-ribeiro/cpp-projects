@@ -14,22 +14,18 @@ int main() {
 
     for(int i=1; i <= NUMERO_DE_TENTATIVAS; i++) {
         printf("Tentativa %d de %d.\n", i, NUMERO_DE_TENTATIVAS);
-        int teste = 1;
-        while(teste) {
-            printf("Insira o seu chute: ");
-            scanf("%d", &chute);
-            if(chute >= 0) {
-                teste = 0;
-            }
-        }
+
+        printf("Insira o seu chute: ");
+        scanf("%d", &chute);
 
         int acertou = (chute == numero_secreto);
         int maior = (chute > numero_secreto);
-        int menor = (chute < numero_secreto);
 
-//        printf("Código acertou: %d.\n", acertou);
-
-        if(acertou) {
+        if(chute < 0) {
+            i--;
+            continue;
+        }
+        else if(acertou) {
             printf("Parabéns! Você acertou!\n");
             break;
         }
