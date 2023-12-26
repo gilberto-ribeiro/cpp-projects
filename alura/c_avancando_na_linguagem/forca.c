@@ -5,7 +5,7 @@
 // Variáveis globais
 char palavra_secreta[20];
 char chutes[26];
-int tentativa = 0;
+int chutes_dados = 0;
 
 void abertura() {
     printf("*************************\n");
@@ -17,13 +17,13 @@ void chuta() {
     char chute;
     printf("Insira seu chute: ");
     scanf(" %c", &chute);
-    chutes[tentativa] = chute;
-    tentativa++;
+    chutes[chutes_dados] = chute;
+    chutes_dados++;
 }
 
 int ja_chutou(char letra) {
     int achou = 0;
-    for(int j = 0; j < tentativa; j++) {
+    for(int j = 0; j < chutes_dados; j++) {
         if(chutes[j] == letra) {
             achou = 1;
             break;
@@ -49,10 +49,32 @@ void escolhe_palavra() {
     sprintf(palavra_secreta, "MELANCIA");
 }
 
-int main() {
+int acertou() {
+    for(int i = 0; i < strlen(palavra_secreta); i++) {
+        if(!ja_chutou(palavra_secreta[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
-    int acertou = 0;
-    int enforcou = 0;
+int enforcou() {
+    int erros = 0;
+    for(int i = 0; i < chutes_dados; i++) {
+        int existe = 0;
+        for(int j = 0; j < strlen(palavra_secreta); j++) {
+            if(chutes[i] == palavra_secreta[j]) {
+                existe = 1;
+                break;
+            }
+        }
+        // Uma linha de código apenas dentro de um if:
+        if(!existe) erros++;
+    }
+    return erros >= 5;
+}
+
+int main() {
 
     abertura();
     escolhe_palavra();
@@ -61,5 +83,5 @@ int main() {
         desenha_forca();
         chuta();
         printf("\n");
-    } while(!acertou && !enforcou);
+    } while(!acertou() && !enforcou());
 }
