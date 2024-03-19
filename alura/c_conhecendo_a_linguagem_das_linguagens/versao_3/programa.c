@@ -20,6 +20,12 @@ int main() {
 
         printf("Seu chute foi %d.\n", chute);
 
+        if (chute < 0) {
+            printf("Seu chute deve ser um número positivo!!!\n");
+            i--;
+            continue;
+        }
+
         int acertou = chute == numero_secreto;
         int maior = chute > numero_secreto;
         int menor = chute < numero_secreto;
