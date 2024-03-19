@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#define NUMERO_DE_TENTATIVAS 5
-
 int main() {
     // Imprime o cabeçalho do nosso jogo
     printf("************************************\n");
@@ -9,12 +7,12 @@ int main() {
     printf("************************************\n");
 
     int numero_secreto = 42;
-
+    int tentativas = 1;
     int chute;
 
-    for (int i = 1; i <= NUMERO_DE_TENTATIVAS; i++) {
+    while (1) {
 
-        printf("Tentativa %d de %d.\n", i, NUMERO_DE_TENTATIVAS);
+        printf("\nTentativa %d.\n", tentativas);
         printf("Qual é o seu chute? ");
         scanf("%d", &chute);
 
@@ -22,13 +20,11 @@ int main() {
 
         if (chute < 0) {
             printf("Seu chute deve ser um número positivo!!!\n");
-            i--;
             continue;
         }
 
         int acertou = chute == numero_secreto;
         int maior = chute > numero_secreto;
-        int menor = chute < numero_secreto;
 
         if (acertou) {
             printf("Parabéns!!! Você acertou!\n");
@@ -37,9 +33,17 @@ int main() {
         else if (maior) {
             printf("O número chutado é maior que o número secreto.\n");
         }
-        else if (menor) {
+        else {
             printf("O número chutado é menor que o número secreto.\n");
         }
+        tentativas++;
     }
-    printf("Fim de jogo!\n");
+    printf("\nFim de jogo!\n");
+
+    if (tentativas == 1) {
+        printf("Você acertou em %d tentativa!\n", tentativas);
+    }
+    else {
+        printf("Você acertou em %d tentativas!\n", tentativas);
+    }
 }
