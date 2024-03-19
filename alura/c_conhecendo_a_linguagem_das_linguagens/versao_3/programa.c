@@ -19,7 +19,13 @@ int main() {
         printf("Parabéns!!! Você acertou!\n");
     }
     else {
-        printf("Você errou. O número secreto era %d.\n", numero_secreto);
+//        printf("Você errou. O número secreto era %d.\n", numero_secreto);
+        if (chute > numero_secreto) {
+            printf("O número chutado é maior que o número secreto.\n");
+        }
+        if (chute < numero_secreto) {
+            printf("O número chutado é menor que o número secreto.\n");
+        }
     }
 
     
