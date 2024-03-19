@@ -15,15 +15,20 @@ int main() {
 
     printf("Seu chute foi %d.\n", chute);
 
-    if (chute == numero_secreto) {
+    int acertou = chute == numero_secreto;
+
+    if (acertou) {
         printf("Parabéns!!! Você acertou!\n");
     }
     else {
 //        printf("Você errou. O número secreto era %d.\n", numero_secreto);
-        if (chute > numero_secreto) {
+
+        int maior = chute > numero_secreto;
+
+        if (maior) {
             printf("O número chutado é maior que o número secreto.\n");
         }
-        if (chute < numero_secreto) {
+        else {
             printf("O número chutado é menor que o número secreto.\n");
         }
     }
